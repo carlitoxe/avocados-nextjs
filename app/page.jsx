@@ -22,7 +22,7 @@ export default function Home() {
 
       <main className="">
         <h1 className='text-3xl text-lime-400 pt-5'>Avocados</h1>
-        <ul className='min-h-[216px] mt-4 flex flex-wrap justify-center gap-4 px-5'>
+        <ul className='min-h-[216px] mt-4 flex flex-wrap justify-center gap-4 px-5 min-h-[1100px]'>
           {
             !loading ? 
             productList.map((product) => {
