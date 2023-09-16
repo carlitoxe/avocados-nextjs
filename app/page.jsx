@@ -1,21 +1,33 @@
-'use client'
+// 'use client'
+
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 
-export default function Home() {
-  const [productList, setProductList] = useState([]);
-  const [loading, setLoading] = useState(false);
+async function getData() {
 
-  useEffect(() => {
-    setLoading(true);
-      fetch(`api/avo/`)
-      .then((response) => response.json())
-      .then(({ data, length }) => {
-        setProductList(data)
-      })
-      .finally(() => setLoading(false))
-  }, [])
+  const res = await fetch(`https://avocados-nextjs-two.vercel.app/api/avo/`)
+  const data = await res.json();
+  return data;
+
+}
+
+export default async function Home({ productList }) {
+  // const [productList, setProductList] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  // useEffect(() => { // Client side rendered
+  //   setLoading(true);
+  //     fetch(`api/avo/`)
+  //     .then((response) => response.json())
+  //     .then(({ data, length }) => {
+  //       setProductList(data)
+  //     })
+  //     .finally(() => setLoading(false))
+  // }, [])
+
+  const {data, length} = await getData();
+  productList = data;
 
   return (
     <>
@@ -24,7 +36,7 @@ export default function Home() {
         <h1 className='text-3xl text-lime-400 pt-5'>Avocados</h1>
         <ul className='mt-4 flex flex-wrap justify-center gap-4 px-5 min-h-[1100px]'>
           {
-            !loading ? 
+           
             productList.map((product) => {
               return (
                 <li key={product.id} className='border border-gray-500 rounded-lg pb-2'>
@@ -37,7 +49,7 @@ export default function Home() {
   
                 </li>
                 )
-              }) : <div>Loading...</div>
+              }) 
           }
        
 
