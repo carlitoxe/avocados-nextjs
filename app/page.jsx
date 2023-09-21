@@ -31,7 +31,6 @@ export default async function Home({ productList }) {
 
   return (
     <>
-
       <main className="">
         <h1 className='text-3xl text-lime-400 pt-5'>Avocados</h1>
         <ul className='mt-4 flex flex-wrap justify-center gap-4 px-5 min-h-[1100px]'>
@@ -39,7 +38,7 @@ export default async function Home({ productList }) {
            
             productList.map((product) => {
               return (
-                <li key={product.id} className='border border-gray-500 rounded-lg pb-2'>
+                <li key={product.id} className='border border-gray-500 rounded-lg pb-2 text-center'>
                   <Link href={`/product/${product.id}`} >
                     <img src={product.image} className='w-[300px] rounded-t-lg' alt={product.name}/>
                     <p className='mt-3 font-medium text-lg leading-5'>{product.name}</p>
